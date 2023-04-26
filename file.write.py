@@ -5,6 +5,16 @@ import os
 source_file = "english_document.txt"
 translated_file = "japanese_document.txt"
 
+# 新しく作成するテキストフォルダの名前を指定
+output_folder = "translated_texts"
+
+# フォルダが存在しない場合、作成する
+if not os.path.exists(output_folder):
+    os.makedirs(output_folder)
+
+# 翻訳後のファイルのパスを生成
+translated_file_path = os.path.join(output_folder, translated_file)
+
 # 翻訳先の言語を定義（この場合は日本語）
 target_language = "ja"
 
@@ -21,6 +31,6 @@ for line in lines:
     translated_lines.append(translated_text)
 
 # 翻訳後のファイルに翻訳されたテキストを書き込む
-with open(translated_file, 'w', encoding='utf-8') as f:
+with open(translated_file_path, 'w', encoding='utf-8') as f:
     for line in translated_lines:
         f.write(line + os.linesep)
